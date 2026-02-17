@@ -1,0 +1,13 @@
+STEP 1: Install Razorpay Package
+dotnet add package Razorpay
+
+STEP 2: Add Razorpay Keys
+#appsettings.json:
+
+"Razorpay": {
+  "Key": "your_key_id",
+  "Secret": "your_secret_key"
+}
+
+
+############Get keys from Razorpay Dashboard (Test Mode).(important)##############

@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model PaymentGatewayIntegration.Models.Student
+@{
+    <h2>Edit Student</h2>
+
+    <form asp-action="StudentsEdit" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div>
+            <label>Name</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div>
+            <label>Course</label>
+            <input asp-for="Course" class="form-control" />
+        </div>
+
+        <div>
+            <label>Age</label>
+            <input asp-for="Age" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Update</button>
+    </form>
+}

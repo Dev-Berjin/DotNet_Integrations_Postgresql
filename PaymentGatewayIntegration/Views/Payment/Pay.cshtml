@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Pay Fees";
+}
+@{
+    <h2>Processing Payment...</h2>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        var options = {
+            "key": "@ViewBag.Key",
+            "amount": "@(ViewBag.Amount * 100)",
+            "currency": "INR",
+            "order_id": "@ViewBag.OrderId",
+            "handler": function (response) {
+
+                var form = document.createElement("form");
+                form.method = "POST";
+                form.action = "/Payment/Verify";
+
+                form.innerHTML =
+                    '<input type="hidden" name="razorpay_order_id" value="' + response.razorpay_order_id + '" />' +
+                    '<input type="hidden" name="razorpay_payment_id" value="' + response.razorpay_payment_id + '" />' +
+                    '<input type="hidden" name="razorpay_signature" value="' + response.razorpay_signature + '" />';
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        };
+
+        var rzp = new Razorpay(options);
+        rzp.open();
+    </script>
+}
