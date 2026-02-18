@@ -9,6 +9,8 @@ builder.Services.AddDbContext<MvcdbContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddHttpClient(); //for Rasa
+
 
 var app = builder.Build();
 
