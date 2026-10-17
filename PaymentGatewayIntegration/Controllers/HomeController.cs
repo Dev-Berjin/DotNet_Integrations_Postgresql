@@ -28,4 +28,10 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+    [HttpGet]
+    public async Task<IActionResult> GetAllEmployees()
+    {
+        var employees = await _context.Employees.AsNoTracking().ToListAsync();
+        return Ok(employees);
+    }
 }
