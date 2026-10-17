@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace PaymentGatewayIntegration.Controllers
 {
@@ -7,6 +8,16 @@ namespace PaymentGatewayIntegration.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllEmployeesGitTest()
+        {
+            var employees = await _context.Employees
+                .AsNoTracking()
+                .ToListAsync();
+
+            return Ok(employees);
         }
     }
 }
